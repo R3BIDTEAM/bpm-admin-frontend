@@ -18,12 +18,6 @@ const routes = [
   { path: '', component: AuthLoginV2Component },
   {
     path: 'main',
-    component: SampleComponent,
-    data: { animation: 'home' },
-    canActivate: [GuardService]
-  },
-  {
-    path: 'home',
     component: HomeComponent,
     data: { animation: 'home' },
     canActivate: [GuardService]

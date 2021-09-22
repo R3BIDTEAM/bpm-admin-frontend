@@ -7,7 +7,7 @@ export const menu: CoreMenu[] = [
     translate: 'Bandeja de Tareas',
     type: 'item',
     icon: 'home',
-    url: 'home'
+    url: 'main'
   },
   {
     id: 'registro',
