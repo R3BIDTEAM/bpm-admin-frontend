@@ -1,0 +1,103 @@
+<h1 mat-dialog-title>Buscador de Personas</h1>
+<div mat-dialog-content>
+    <form #formDialog="ngForm">
+        <div class="row">
+            <mat-form-field appearance="outline" class="col-md-4">
+                <mat-label>Nombre/Razón social:</mat-label>
+                <input matInput placeholder="Nombre/Razón social" [(ngModel)]="filtroDatosPersonales.nombre" name="nombre" (ngModelChange)="clearDatos('nombre', 'personales')">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-md-4">
+                <mat-label>Apellido Paterno:</mat-label>
+                <input matInput placeholder="Apellido Paterno" [(ngModel)]="filtroDatosPersonales.apaterno" name="apaterno" (ngModelChange)="clearDatos('apaterno', 'personales')">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-md-4">
+                <mat-label>Apellido Materno:</mat-label>
+                <input matInput placeholder="Apellido Materno" [(ngModel)]="filtroDatosPersonales.amaterno" name="amaterno" (ngModelChange)="clearDatos('amaterno', 'personales')">
+            </mat-form-field>
+        </div>
+        <hr>
+        <div class="row">
+            <mat-form-field appearance="outline" class="col-md-4">
+                <mat-label>RFC:</mat-label>
+                <input matInput placeholder="RFC" [(ngModel)]="filtroDatosIdentificativos.rfc" name="rfc" (ngModelChange)="clearDatos('rfc', 'identificativos')">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-md-4">
+                <mat-label>CURP:</mat-label>
+                <input matInput placeholder="CURP" [(ngModel)]="filtroDatosIdentificativos.curp" name="curp" (ngModelChange)="clearDatos('curp', 'identificativos')">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-md-4">
+                <mat-label>Clave INE:</mat-label>
+                <input matInput placeholder="Clave INE" [(ngModel)]="filtroDatosIdentificativos.ine" name="ine" (ngModelChange)="clearDatos('ine', 'identificativos')">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="col-md-4">
+                <mat-label>Otro:</mat-label>
+                <input matInput [(ngModel)]="filtroDatosIdentificativos.otro "placeholder="Otro"   name="otro" (ngModelChange)="clearDatos('otro', 'identificativos')">
+            </mat-form-field>
+        </div>
+        <div class="col" align="middle">
+            <button mat-icon-button color="primary" aria-label="Buscar" matTooltip="Buscar" (click)="getData()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+    </form>
+    <ng-container *ngIf="isBusqueda">
+        <fieldset>
+            <legend>Lista de personas</legend>
+            <div style="padding: 30px; text-align: center;" *ngIf="loadingPaginado">
+                <mat-spinner style="margin:0 auto;"></mat-spinner>
+                <p>Cargando...</p>
+            </div>
+            <ngb-alert [type]="'danger'" [dismissible]="false"  *ngIf="dataSource.length == 0 && !loadingPaginado">
+                <div class="alert-body">
+                  <p>No se encontraron datos.!</p>
+                </div>
+            </ngb-alert>
+            
+            <div class="table-responsive">
+            <table class="table" *ngIf="dataSource.length > 0 && !loadingPaginado">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Datos identificativos</th>
+                        <th>Seleccionar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let element of dataSource; let i = index;">
+                        <td>{{ element.NOMBRE }} {{ element.APELLIDOPATERNO }} {{ element.APELLIDOMATERNO}}</td>
+                        <td>
+                            <ng-container *ngIf="element.CODTIPOPERSONA == 'F'">
+                                {{ element.TIPOPERSONA }}
+                                <br *ngIf="element.CURP != ''" >
+                                {{ element.CURP}} 
+                                <br *ngIf="element.RFC != ''" >
+                                {{ element.RFC }}
+                                <br *ngIf="element.CLAVEIFE != ''" >
+                                {{ element.CLAVEIFE }}
+                            </ng-container>
+                            <ng-container *ngIf="element.CODTIPOPERSONA == 'M'">
+                                {{ element.TIPOPERSONA }}
+                                <br *ngIf="element.RFC != ''" >
+                                {{ element.RFC }}
+                            </ng-container>
+                        </td>
+                        <td>
+                            <mat-radio-group [(ngModel)]="promoventeRepresentante">
+                                <mat-radio-button [value]="element" (change)="promoventeRepresentanteSelected(element)"></mat-radio-button>
+                            </mat-radio-group>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <mat-paginator #paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="[pageSize]" (page)="paginado($event)">
+            </mat-paginator>
+            </div>
+        </fieldset>
+    </ng-container>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" *ngIf="promoventeRepresentante" [mat-dialog-close]="dataPromoventeRepresentante">Aceptar</button>
+    <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>

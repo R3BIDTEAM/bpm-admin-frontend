@@ -1,0 +1,110 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Basic Alerts start -->
+    <section id="home-page">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Bandeja de Tareas</h4>
+            </div>
+            <div class="card-body pb-1">
+              <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Tipo Trámite:</mat-label>
+                        <mat-select>
+                            <mat-option value="">Tipo Trámite 1</mat-option>
+                            <mat-option value="">Tipo Trámite 2</mat-option>
+                            <mat-option value="">Tipo Trámite 3</mat-option>
+                            <mat-option value="">Tipo Trámite 4</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Subtipo Trámite:</mat-label>
+                        <mat-select>
+                            <mat-option value="">Subtipo Trámite 1</mat-option>
+                            <mat-option value="">Subtipo Trámite 2</mat-option>
+                            <mat-option value="">Subtipo Trámite 3</mat-option>
+                            <mat-option value="">Subtipo Trámite 4</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Tarea</mat-label>
+                        <input matInput placeholder="Placeholder">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>N° Expediente</mat-label>
+                        <input matInput placeholder="Placeholder">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill" style="width: 100%;">
+                        <mat-label>Fecha Registro Desde</mat-label>
+                        <input matInput [matDatepicker]="fechaDesde">
+                        <mat-datepicker-toggle matSuffix [for]="fechaDesde"></mat-datepicker-toggle>
+                        <mat-datepicker #fechaDesde></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill" style="width: 100%;">
+                        <mat-label>Fecha Registro Hasta</mat-label>
+                        <input matInput [matDatepicker]="fechaHasta">
+                        <mat-datepicker-toggle matSuffix [for]="fechaHasta"></mat-datepicker-toggle>
+                        <mat-datepicker #fechaHasta></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill" style="width: 100%;">
+                        <mat-label>Fecha Término</mat-label>
+                        <input matInput [matDatepicker]="fechaTermino">
+                        <mat-datepicker-toggle matSuffix [for]="fechaTermino"></mat-datepicker-toggle>
+                        <mat-datepicker #fechaTermino></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Estado Asignación</mat-label>
+                        <mat-select>
+                            <mat-option value="">Nueva</mat-option>
+                            <mat-option value="">Asignada</mat-option>
+                            <mat-option value="">Superada</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Topógrafo</mat-label>
+                        <mat-select>
+                            <mat-option value="">Topografo 1</mat-option>
+                            <mat-option value="">Topografo 2</mat-option>
+                            <mat-option value="">Topografo 3</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Basic Alerts end -->
+  </div>
+</div>

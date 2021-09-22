@@ -1,0 +1,121 @@
+<h1 mat-dialog-title>Especificación/Consulta Dirección Notificación</h1>
+<div mat-dialog-content>
+    <form [formGroup]="domicilio">
+        <div class="row">
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>Estado:</mat-label>
+                <input matInput formControlName="ESTADO" maxlength="50" readonly>
+            </mat-form-field>
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>Alcaldía: *</mat-label>
+                <mat-select formControlName="IDDELEGACION" (selectionChange)="getNombreDelegacion($event)">
+                    <mat-option value="">Seleccione una Alcaldía...</mat-option>
+                    <mat-option *ngFor="let delegacion of delegaciones" [value]="delegacion.iddelegacion">
+                        {{ delegacion.nombre }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="domicilio.controls.IDDELEGACION.errors?.required">Requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline"  class="col-md-8">
+                <mat-label>Colonia / Asentamiento: *</mat-label>
+                <input matInput formControlName="COLONIA" maxlength="50">
+                <mat-error *ngIf="domicilio.controls.COLONIA.errors?.required">Requerido</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline"  class="col-md-4">
+                <mat-label>Código Postal:</mat-label>
+                <input matInput formControlName="CODIGOPOSTAL" maxlength="5">
+                <mat-error *ngIf="domicilio.controls.CODIGOPOSTAL.errors?.minlength">El código debe de contener 5 digitos</mat-error>
+                <mat-error *ngIf="domicilio.controls.CODIGOPOSTAL.errors?.maxlength">El código debe de contener 5 digitos</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>Tipo Vía: *</mat-label>
+                <mat-select formControlName="CODTIPOSVIA">
+                    <mat-option value="">Seleccione un tipo de vía...</mat-option>
+                    <mat-option *ngFor="let tipo of tiposVia" [value]="tipo.codtiposvia">
+                        {{ tipo.tipovia }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="domicilio.controls.CODTIPOSVIA.errors?.required">Requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>Vía: *</mat-label>
+                <textarea matInput rows="5" formControlName="VIA"></textarea>
+                <mat-error *ngIf="domicilio.controls.VIA.errors?.required">Requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>Tipo Localidad:</mat-label>
+                <mat-select formControlName="CODTIPOSLOCALIDAD">
+                    <mat-option value="">Seleccione un tipo de localidad...</mat-option>
+                    <mat-option *ngFor="let tipo of tiposLocalidad" [value]="tipo.codtiposlocalidad">
+                        {{ tipo.descripcion }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>N° Exterior: *</mat-label>
+                <input matInput formControlName="NUMEROEXTERIOR" maxlength="50">
+                <mat-error *ngIf="domicilio.controls.NUMEROEXTERIOR.errors?.required">Requerido</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>N° Interior:</mat-label>
+                <input matInput formControlName="NUMEROINTERIOR" maxlength="50">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>Andador:</mat-label>
+                <input matInput formControlName="ANDADOR" maxlength="50">
+            </mat-form-field>
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>Edificio:</mat-label>
+                <input matInput formControlName="EDIFICIO" maxlength="50">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>Entrada:</mat-label>
+                <input matInput formControlName="ENTRADA" maxlength="50">
+            </mat-form-field>
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>Sección:</mat-label>
+                <input matInput formControlName="SECCION" maxlength="50">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>Teléfono:</mat-label>
+                <input matInput formControlName="TELEFONO" maxlength="50">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>Entre calle 1:</mat-label>
+                <textarea matInput rows="5" formControlName="ENTRECALLE1"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline"  class="col-md-6">
+                <mat-label>Entre calle 2:</mat-label>
+                <textarea matInput rows="5" formControlName="ENTRECALLE2"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="col-md-6">
+                <mat-label>Indicaciones Adicionales:</mat-label>
+                <textarea matInput rows="5" formControlName="INDICACIONESADICIONALES"></textarea>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" [disabled]="domicilio.invalid" [mat-dialog-close]="getDataDomicilioNotificacion()">Aceptar</button>
+    <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>
