@@ -1,0 +1,94 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+      <!-- content-header component -->
+      <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  
+      <!-- Basic Alerts start -->
+      <section id="home-page">
+        <div class="row">
+          <div class="col-12">
+            <div class="card" *ngIf="!loadingExpediente">
+              <div class="card-header">
+                <h4 class="card-title">ACUSE DE RECIBO | {{ expediente.numeroExpediente }}</h4>
+              </div>
+              <div class="card-body pb-1">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>Tipo Oficio</th>
+                        <th>Datos Personales</th>
+                        <th>Datos Identificativos</th>
+                        <th>Datos de Contacto</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let promovente of expediente.promoventes; let i = index;">
+                      <td>Acuse de Recibo{{ promovente.tipo }}</td>
+                      <td>{{ promovente.nombre }} {{ promovente.apellidoPaterno }} {{ promovente.apellidoMaterno }}</td>
+                      <td *ngIf="promovente.tipo === 'fisica'">{{ promovente.rfc }}, {{ promovente.curp }}, {{ promovente.claveIne }}</td>
+                      <td *ngIf="promovente.tipo === 'fisica'">{{ promovente.celular }}, {{ promovente.email }}</td>
+                      <td *ngIf="promovente.tipo === 'moral'">{{ promovente.rfc }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="row row-m-t">
+                  <div class="col-12 text-center">
+                    <button mat-stroked-button color="primary" aria-label="Descargar Acuse de Recibo" (click)="downloadFile(expediente.acuseRecibo.idDocumentoDigital)">
+                      Descargar Acuse de Recibo<mat-icon style="display: inherit; width: 15px;">download</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card" *ngIf="!loadingExpediente">
+                <div class="card-body pb-1">
+                  <div class="row row-m-t">
+                    <div class="col-12">
+                      <div class="card shadow-none bg-transparent">
+                        <div class="card-body pb-1">
+                          <form [formGroup]="formAcuse">
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                  <mat-checkbox  formControlName="entregado" [ngModelOptions]="{standalone: true}"> Oficio Entregado</mat-checkbox>
+                                  <mat-error *ngIf="formAcuse.controls.entregado.errors?.required">Requerido</mat-error>
+                                </div>
+                                <div class="col-md-6">
+                                  <mat-label> Fecha y Hora de Entrega: </mat-label>
+                                  <ng2-flatpickr [config]="dateTimeOptions" formControlName="fechaHora"></ng2-flatpickr>
+                                  <mat-error *ngIf="formAcuse.controls.fechaHora.errors?.required">Requerido</mat-error>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col-md-6">
+                                  <mat-label> Nombre Completo del Receptor: </mat-label>
+                                  <input matInput  formControlName="nombre">
+                                  <mat-error *ngIf="formAcuse.controls.nombre.errors?.required">Requerido</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="col-md-6">
+                                  <mat-label>Datos de Identificación: </mat-label>
+                                  <input matInput formControlName="datosIdentificativos">
+                                  <mat-error *ngIf="formAcuse.controls.datosIdentificativos.errors?.required">Requerido</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="row row-m-t">
+                              <div class="col-12 text-right">
+                                <button mat-stroked-button color="primary" aria-label="Finalizar Tarea" (click)="save()" [disabled]="formAcuse.invalid">
+                                  Finalizar Tarea<mat-icon style="display: inherit; width: 15px;">check</mat-icon>
+                                </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+</div>

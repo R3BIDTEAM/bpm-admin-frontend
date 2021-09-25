@@ -18,6 +18,8 @@ import { coreConfig } from 'app/app-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
+import { DialogCargaComponent } from './main/dialog-carga/dialog-carga.component';
+import { PagesModule } from 'app/main/pages/pages.module'
 
 const appRoutes: Routes = [
   {
@@ -26,7 +28,7 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/main',
     pathMatch: 'full'
   },
   {
@@ -36,7 +38,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DialogCargaComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -60,6 +62,7 @@ const appRoutes: Routes = [
     // App modules
     LayoutModule,
     SampleModule,
+    PagesModule
   ],
 
   bootstrap: [AppComponent]

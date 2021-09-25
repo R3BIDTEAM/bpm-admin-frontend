@@ -7,7 +7,7 @@ export const environment = {
   hmr: false,
   apiUrl: 'http://localhost:4000',
   endpoint: 'https://rest-adycon-test-dot-build-bpm.uc.r.appspot.com/v1/adycon',
-  endpointDocumentos: 'https://rest-adycon-test-dot-build-bpm.uc.r.appspot.com/v1/documentos',
+  endpointAPI: 'https://rest-adycon-test-dot-build-bpm.uc.r.appspot.com/v1/',
   endPointCuentas: 'http://10.0.8.20:8000/cas/api/v1/',
   ssoEndpoint: 'http://ovica.linesolutions.tech/sso-backend/public/api/v1/',
   ssoRemember: 'http://ovica.linesolutions.tech/sso/recordar-password',
