@@ -21,7 +21,7 @@ export const menu: CoreMenu[] = [
         title: 'Alta de Expediente',
         translate: 'Alta de Expediente',
         type: 'item',
-        url: 'registro/alta-expediente',
+        url: 'expediente/alta',
         icon: 'circle',
       },
     ]

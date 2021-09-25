@@ -5,13 +5,13 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { MatTable } from "@angular/material/table";
 import { environment } from "environments/environment"
 
 import { AuthService } from "@core/services/auth.service";
 import { saveAs } from 'file-saver';
 
 import Stepper from 'bs-stepper';
+import { DialogCargaComponent } from "app/main/dialog-carga/dialog-carga.component";
 export interface DataExpediente {
   tipoTramite: string;
   descripcion: string;
@@ -94,7 +94,7 @@ export interface DataDomicilioNotificacion {
   encapsulation: ViewEncapsulation.None,
 })
 export class AltaExpedienteComponent implements OnInit {
-    public contentHeader: object
+    public contentHeader: object;
     private horizontalWizardStepper: Stepper;
     private bsStepper;
 
@@ -1111,7 +1111,7 @@ export class AltaExpedienteComponent implements OnInit {
               promoventes: promoventes
             }
 
-            const dialogRef = this.dialog.open(DialogInsertaExpediente, {
+            const dialogRef = this.dialog.open(DialogCargaComponent, {
               width: '600px',
             });
             
@@ -1122,7 +1122,7 @@ export class AltaExpedienteComponent implements OnInit {
                 switch(res.error.code) {
                   case 0: {
                     this.downloadFile(res.data.idDocumentoDigital);
-                    //window.location.reload();
+                    window.location.reload();
                     this.snackBar.open('Se ha iniciado el expediente con numero ' + res.data.numeroExpediente, 'Cerrar', {
                       duration: 10000,
                       horizontalPosition: 'end',
@@ -1178,7 +1178,7 @@ export class AltaExpedienteComponent implements OnInit {
       }
 
       getFiles(idDocumentoDigital) {
-        let urlDownloadAcuse = environment.endpointDocumentos + '?action=descargar';
+        let urlDownloadAcuse = environment.endpointAPI + 'documentos/?action=descargar';
         var body = { idDocumentoDigital: idDocumentoDigital.toString() };
 
         const headers = new HttpHeaders({ 
@@ -1189,7 +1189,7 @@ export class AltaExpedienteComponent implements OnInit {
       }
 
       downloadFile(idDocumentoDigital) {
-        const dialogRef = this.dialog.open(DialogInsertaExpediente, {
+        const dialogRef = this.dialog.open(DialogCargaComponent, {
           width: '600px',
         });
         this.getFiles(idDocumentoDigital).subscribe((response: any) => {
@@ -1232,7 +1232,7 @@ export class DialogSearchPromoventeRepresentante {
   isBusqueda;
   loadingPaginado = false;
   
-  pagina = 1;
+  pagina = 0;
   total = 0;
   pageSize = 5;
   
@@ -1512,16 +1512,4 @@ export class DialogCuentasCatastralesCurso {
   paginate(array, page_size, page_number) {
     return array.slice((page_number - 1) * page_size, page_number * page_size);
   }
-}
-
-@Component({
-  selector: 'app-dialog-carga',
-  templateUrl: 'app-dialog-carga.html',
-})
-export class DialogInsertaExpediente {
-  constructor(
-    public dialogRef: MatDialogRef<DialogInsertaExpediente>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      dialogRef.disableClose = true;
-    }
 }

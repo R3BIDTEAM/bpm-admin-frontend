@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AltaExpedienteComponent } from './alta-expediente.component';
+import { DialogCargaComponent } from './dialog-carga.component';
 
-describe('AltaExpedienteComponent', () => {
-  let component: AltaExpedienteComponent;
-  let fixture: ComponentFixture<AltaExpedienteComponent>;
+describe('DialogCargaComponent', () => {
+  let component: DialogCargaComponent;
+  let fixture: ComponentFixture<DialogCargaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AltaExpedienteComponent ]
+      declarations: [ DialogCargaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AltaExpedienteComponent);
+    fixture = TestBed.createComponent(DialogCargaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
