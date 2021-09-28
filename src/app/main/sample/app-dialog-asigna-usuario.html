@@ -29,7 +29,7 @@
                         <td>{{ element.nombre }} {{ element.apellidopaterno }} {{ element.apellidomaterno}}</td>
                         <td>
                             <mat-radio-group [(ngModel)]="usuario">
-                                <mat-radio-button [value]="element" (change)="usuarioSelected(element)"></mat-radio-button>
+                                <mat-radio-button [value]="element"></mat-radio-button>
                             </mat-radio-group>
                         </td>
                     </tr>

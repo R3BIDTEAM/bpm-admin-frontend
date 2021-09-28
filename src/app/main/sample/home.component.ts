@@ -151,6 +151,8 @@ export class DialogAsignaUsuario {
     public dialogRef: MatDialogRef<DialogAsignaUsuario>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       dialogRef.disableClose = true;
+
+      this.getData();
     }
 
   getData(): void {
@@ -159,7 +161,6 @@ export class DialogAsignaUsuario {
   
     this.http.get(this.endpoint).subscribe(
       (res: any) => {
-        console.log(res)
         this.loadingPaginado = false;
           if(res.length > 0){
             this.dataResponse = res;
@@ -189,10 +190,6 @@ export class DialogAsignaUsuario {
 
   paginate(array, page_size, page_number) {
     return array.slice((page_number - 1) * page_size, page_number * page_size);
-  }
-
-  usuarioSelected(element) {
-    console.log(element);
   }
 
 }

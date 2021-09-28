@@ -7,7 +7,7 @@ import { CoreCommonModule } from '@core/common.module';
 import { ContentHeaderModule } from 'app/layout/components/content-header/content-header.module';
 
 import { SampleComponent } from './sample.component';
-import { HomeComponent } from './home.component';
+import { HomeComponent, DialogAsignaUsuario } from './home.component';
 import { GuardService } from '@core/services/guard.service';
 
 import { AuthLoginV2Component } from '../pages/authentication/auth-login-v2/auth-login-v2.component';
@@ -24,7 +24,7 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [SampleComponent, HomeComponent],
+  declarations: [SampleComponent, HomeComponent, DialogAsignaUsuario],
   imports: [RouterModule.forChild(routes), ContentHeaderModule, TranslateModule, CoreCommonModule,MaterialModule],
   exports: [SampleComponent, HomeComponent]
 })
