@@ -4,6 +4,7 @@ import { environment } from 'environments/environment';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { DialogCargaComponent } from "app/main/dialog-carga/dialog-carga.component";
+import Swal from 'sweetalert2'
 
 import { AuthService } from "@core/services/auth.service";
 import { FormBuilder, FormGroup } from "@angular/forms";
@@ -156,11 +157,15 @@ export class HomeComponent implements OnInit {
             dialogRef.close();
             switch(res.error.code) {
               case 0: {
-                const dialogSuccessAsignacion = this.dialog.open(DialogSuccessAsignacion, {
-                  width: '600px',
-                  data: {numeroExpediente: numeroExpediente, usuario: result.login}
-                }).afterClosed().subscribe(() => {
-                  window.location.reload();   
+                Swal.fire({  
+                  title: 'Trámite Asignado',
+                  html: 'El expediente con numero <strong>' + numeroExpediente + '</strong> fue asignado al usuario <strong>' + result.login + '</strong> exitosamente.',  
+                  icon: 'success',
+                  confirmButtonColor: '#a02042',
+                  showCancelButton: false,  
+                  confirmButtonText: 'Aceptar',  
+                }).then((result) => {  
+                  window.location.reload();
                 });
                 break;
               }
@@ -276,16 +281,4 @@ export class DialogAsignaUsuario {
     return array.slice((page_number - 1) * page_size, page_number * page_size);
   }
 
-}
-
-@Component({
-  selector: 'app-dialog-success-asignacion',
-  templateUrl: 'app-dialog-success-asignacion.html',
-})
-export class DialogSuccessAsignacion {  
-  constructor(
-    public dialogRef: MatDialogRef<DialogSuccessAsignacion>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      dialogRef.disableClose = true;
-    }
 }
