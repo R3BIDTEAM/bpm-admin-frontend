@@ -3,6 +3,7 @@ import { Component, OnInit, Inject } from '@angular/core'
 import { environment } from 'environments/environment';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { DialogCargaComponent } from "app/main/dialog-carga/dialog-carga.component";
 
 import { AuthService } from "@core/services/auth.service";
 import { FormBuilder, FormGroup } from "@angular/forms";
@@ -121,8 +122,82 @@ export class HomeComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        console.log(numeroExpediente);
-        console.log(result);
+        let endpoint = environment.endpointAPI + 'kreintoBPM?action=asignarExpediente';
+    
+        let options = {
+          headers: new HttpHeaders({
+            login: this.auth.getSession().userData.login,
+            rol: this.auth.getSession().userData.rol.toString(),
+          })
+        };
+
+        let body = {
+          "numeroExpediente": numeroExpediente,
+          "login": [
+            result.login
+          ]
+        };
+
+        const dialogRef = this.dialog.open(DialogCargaComponent, {
+          width: '600px',
+        });
+
+        this.http.post(endpoint, JSON.stringify(body), options).subscribe(
+          (res: any) => {
+            dialogRef.close();
+            switch(res.error.code) {
+              case 0: {
+                window.location.reload();
+                this.snackBar.open('El expediente ' + numeroExpediente + ' fue asignado al usuario ' + result.login + ' exitosamente.', 'Cerrar', {
+                  duration: 10000,
+                  horizontalPosition: 'end',
+                  verticalPosition: 'top'
+                });
+                break;
+              }
+              case 100: {
+                this.snackBar.open('Verifique la información ingresada', 'Cerrar', {
+                  duration: 10000,
+                  horizontalPosition: 'end',
+                  verticalPosition: 'top'
+                });
+                break;
+              }
+              case 200: {
+                this.snackBar.open('Ocurrió un error en la comucación, intentelo nuevamente', 'Cerrar', {
+                  duration: 10000,
+                  horizontalPosition: 'end',
+                  verticalPosition: 'top'
+                });
+                break;
+              }
+              case 203: {
+                this.snackBar.open('Ocurrió un error al guardar la información, intentelo nuevamente', 'Cerrar', {
+                  duration: 10000,
+                  horizontalPosition: 'end',
+                  verticalPosition: 'top'
+                });
+                break;
+              }
+              default: {
+                this.snackBar.open(res.error.message, 'Cerrar', {
+                  duration: 10000,
+                  horizontalPosition: 'end',
+                  verticalPosition: 'top'
+                });
+                break;
+              }
+            }
+          },
+          (error) => {
+            dialogRef.close();
+            this.snackBar.open(error.message, 'Cerrar', {
+              duration: 10000,
+              horizontalPosition: 'end',
+              verticalPosition: 'top'
+            });
+          }
+        );
       }
     });
   }
