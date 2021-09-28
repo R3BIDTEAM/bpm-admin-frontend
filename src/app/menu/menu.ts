@@ -9,7 +9,7 @@ export const menu: CoreMenu[] = [
     icon: 'home',
     url: 'main'
   },
-  {
+  /*{
     id: 'registro',
     title: 'Registro',
     translate: 'Registro',
@@ -25,5 +25,5 @@ export const menu: CoreMenu[] = [
         icon: 'circle',
       },
     ]
-  }
+  }*/
 ]

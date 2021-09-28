@@ -18,7 +18,7 @@ import { Ng2FlatpickrModule } from 'ng2-flatpickr';
 import { AltaExpedienteComponent,DialogSearchPromoventeRepresentante,DialogAddDomicilioNotificacion, DialogCuentasCatastralesCurso } from 'app/main/pages/expediente/alta/alta-expediente.component';
 
 const routes = [
-  {
+  /*{
     path: 'expediente/alta',
     component: AltaExpedienteComponent,
     data: { animation: 'home'},
@@ -29,7 +29,7 @@ const routes = [
     component: AcuseReciboComponent,
     data: { animation: 'home'},
     canActivate: [GuardService]
-  }
+  }*/
 ];
 
 @NgModule({

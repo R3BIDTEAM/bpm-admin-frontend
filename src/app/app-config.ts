@@ -3,8 +3,8 @@ import { CoreConfig } from '@core/types';
 // prettier-ignore
 export const coreConfig: CoreConfig = {
   app: {
-    appName     : 'ADYCON',                                        // App Name
-    appTitle    : 'Administración y Control', // App Title
+    appName     : 'BPMADMIN',                                        // App Name
+    appTitle    : 'BPM', // App Title
     appLogoImage: 'assets/images/logo/logo.png',
     appLogoImageDependencia: 'assets/images/logo/logo-dependencia.png',
     appLogoImageRight: 'assets/images/logo/logo-right.png',
