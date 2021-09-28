@@ -14,9 +14,9 @@ import { Router } from "@angular/router";
 })
 export class HomeComponent implements OnInit {
 
-  loadingBandejaTareas = false;
+  loadingListadoTramites = false;
 
-  bandejaTareas = [];
+  tramites = [];
   total = 0;
   pagina = 0;
   pageSize = 10;
@@ -42,13 +42,13 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     console.log('configured routes: ', this.router.config);
     this.contentHeader = {
-      headerTitle: 'Bandeja de tareas',
+      headerTitle: 'Asignación de trámites',
       actionButton: true,
       breadcrumb: {
         type: '',
         links: [
           {
-            name: 'Bandeja',
+            name: 'Asignación',
             isLink: false
           }
         ]
@@ -60,21 +60,21 @@ export class HomeComponent implements OnInit {
     });
 
     (async () => {
-      await this.getBandejaTareas({ pageIndex:0 });
+      await this.getTramites({ pageIndex:0 });
     })();
 
   }
 
   search() {
     (async () => {
-      await this.getBandejaTareas({ pageIndex:0 });
+      await this.getTramites({ pageIndex:0 });
     })();
   }
 
-  getBandejaTareas(evt): void {
+  getTramites(evt): void {
     this.pagina = evt.pageIndex + 1;
     
-    let bandeTarias = environment.endpointAPI + 'kreintoBPM?action=getBandejaTareas';
+    let listTramites = environment.endpointAPI + 'kreintoBPM?action=getBandejaTareas';
     
     let options = {
       headers: new HttpHeaders({
@@ -95,15 +95,15 @@ export class HomeComponent implements OnInit {
     if(this.filtroForm.value.expediente && this.filtroForm.value.expediente != undefined && this.filtroForm.value.expediente != '')
       filtro["numeroExpediente"] = this.filtroForm.value.expediente;
 
-    this.loadingBandejaTareas = true;
-    this.http.post(bandeTarias,filtro, options).subscribe(
+    this.loadingListadoTramites = true;
+    this.http.post(listTramites,filtro, options).subscribe(
       (res: any) => {
         this.total = res.data.conteo;
-        this.bandejaTareas = res.data.resultado;
-        this.loadingBandejaTareas = false;
+        this.tramites = res.data.resultado;
+        this.loadingListadoTramites = false;
       },
       (error) => {
-        this.loadingBandejaTareas = false;
+        this.loadingListadoTramites = false;
         this.snackBar.open(error.message, 'Cerrar', {
           duration: 10000,
           horizontalPosition: 'end',

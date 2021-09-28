@@ -5,121 +5,121 @@
 
     <!-- Basic Alerts start -->
     <section id="home-page">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">Filtros</h4>
-            </div>
-            <div class="card-body pb-1">
-                <form [formGroup]="filtroForm">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <mat-form-field appearance="outline" style="width: 100%;">
-                                <mat-label>Tipo Trámite:</mat-label>
-                                <mat-select>
-                                    <mat-option value="">Tipo Trámite 1</mat-option>
-                                    <mat-option value="">Tipo Trámite 2</mat-option>
-                                    <mat-option value="">Tipo Trámite 3</mat-option>
-                                    <mat-option value="">Tipo Trámite 4</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                            <mat-form-field appearance="outline" style="width: 100%;">
-                                <mat-label>Subtipo Trámite:</mat-label>
-                                <mat-select>
-                                    <mat-option value="">Subtipo Trámite 1</mat-option>
-                                    <mat-option value="">Subtipo Trámite 2</mat-option>
-                                    <mat-option value="">Subtipo Trámite 3</mat-option>
-                                    <mat-option value="">Subtipo Trámite 4</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Filtros</h4>
                     </div>
-            
-                    <div class="row">
-                        <div class="col-md-6">
-                            <mat-form-field appearance="outline" style="width: 100%;">
-                                <mat-label>Tarea</mat-label>
-                                <input matInput placeholder="Placeholder">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                            <mat-form-field appearance="outline" style="width: 100%;" >
-                                <mat-label>N° Expediente</mat-label>
-                                <input matInput placeholder="Placeholder" formControlName="expediente">
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                                <mat-label>Fecha Registro Desde</mat-label>
-                                <input matInput [matDatepicker]="fechaDesde">
-                                <mat-datepicker-toggle matSuffix [for]="fechaDesde"></mat-datepicker-toggle>
-                                <mat-datepicker #fechaDesde></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                                <mat-label>Fecha Registro Hasta</mat-label>
-                                <input matInput [matDatepicker]="fechaHasta">
-                                <mat-datepicker-toggle matSuffix [for]="fechaHasta"></mat-datepicker-toggle>
-                                <mat-datepicker #fechaHasta></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                                <mat-label>Fecha Término</mat-label>
-                                <input matInput [matDatepicker]="fechaTermino">
-                                <mat-datepicker-toggle matSuffix [for]="fechaTermino"></mat-datepicker-toggle>
-                                <mat-datepicker #fechaTermino></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
+                    <div class="card-body pb-1">
+                        <form [formGroup]="filtroForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline" style="width: 100%;">
+                                        <mat-label>Tipo Trámite:</mat-label>
+                                            <mat-select>
+                                            <mat-option value="">Tipo Trámite 1</mat-option>
+                                            <mat-option value="">Tipo Trámite 2</mat-option>
+                                            <mat-option value="">Tipo Trámite 3</mat-option>
+                                            <mat-option value="">Tipo Trámite 4</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline" style="width: 100%;">
+                                        <mat-label>Subtipo Trámite:</mat-label>
+                                        <mat-select>
+                                            <mat-option value="">Subtipo Trámite 1</mat-option>
+                                            <mat-option value="">Subtipo Trámite 2</mat-option>
+                                            <mat-option value="">Subtipo Trámite 3</mat-option>
+                                            <mat-option value="">Subtipo Trámite 4</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
                 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <mat-form-field appearance="outline" style="width: 100%;">
-                                <mat-label>Estado Asignación</mat-label>
-                                <mat-select>
-                                    <mat-option value="">Nueva</mat-option>
-                                    <mat-option value="">Asignada</mat-option>
-                                    <mat-option value="">Superada</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                            <mat-form-field appearance="outline" style="width: 100%;">
-                                <mat-label>Topógrafo</mat-label>
-                                <mat-select>
-                                    <mat-option value="">Topografo 1</mat-option>
-                                    <mat-option value="">Topografo 2</mat-option>
-                                    <mat-option value="">Topografo 3</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        </div>
-                    </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline" style="width: 100%;">
+                                        <mat-label>Tarea</mat-label>
+                                        <input matInput placeholder="Tarea">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline" style="width: 100%;" >
+                                        <mat-label>N° Expediente</mat-label>
+                                        <input matInput placeholder="N° Expediente" formControlName="expediente">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field appearance="fill" style="width: 100%;">
+                                        <mat-label>Fecha Registro Desde</mat-label>
+                                        <input matInput [matDatepicker]="fechaDesde">
+                                        <mat-datepicker-toggle matSuffix [for]="fechaDesde"></mat-datepicker-toggle>
+                                        <mat-datepicker #fechaDesde></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field appearance="fill" style="width: 100%;">
+                                        <mat-label>Fecha Registro Hasta</mat-label>
+                                        <input matInput [matDatepicker]="fechaHasta">
+                                        <mat-datepicker-toggle matSuffix [for]="fechaHasta"></mat-datepicker-toggle>
+                                        <mat-datepicker #fechaHasta></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field appearance="fill" style="width: 100%;">
+                                        <mat-label>Fecha Término</mat-label>
+                                        <input matInput [matDatepicker]="fechaTermino">
+                                        <mat-datepicker-toggle matSuffix [for]="fechaTermino"></mat-datepicker-toggle>
+                                        <mat-datepicker #fechaTermino></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                    
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline" style="width: 100%;">
+                                        <mat-label>Estado Asignación</mat-label>
+                                        <mat-select>
+                                            <mat-option value="">Nueva</mat-option>
+                                            <mat-option value="">Asignada</mat-option>
+                                            <mat-option value="">Superada</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field appearance="outline" style="width: 100%;">
+                                        <mat-label>Topógrafo</mat-label>
+                                        <mat-select>
+                                            <mat-option value="">Topografo 1</mat-option>
+                                            <mat-option value="">Topografo 2</mat-option>
+                                            <mat-option value="">Topografo 3</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
 
-                    <button mat-stroked-button color="primary" aria-label="Buscar" (click)="search()">
-                        Buscar<mat-icon style="display: inherit; width: 15px;">search</mat-icon>
-                    </button>
-                </form>
+                            <button mat-stroked-button color="primary" aria-label="Buscar" (click)="search()">
+                                Buscar<mat-icon style="display: inherit; width: 15px;">search</mat-icon>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">BANDEJA</h4>
-                        <div class="d-flex justify-content-center my-1" *ngIf="loadingBandejaTareas">
+                        <h4 class="card-title">Listado</h4>
+                        <div class="d-flex justify-content-center my-1" *ngIf="loadingListadoTramites">
                             <div class="spinner-border" role="status" aria-hidden="true"></div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table" *ngIf="bandejaTareas.length > 0 && !loadingBandejaTareas">
+                            <table class="table" *ngIf="tramites.length > 0 && !loadingListadoTramites">
                             <thead class="thead-dark">
                                 <tr>
                                 <th>Expediente</th>
@@ -132,7 +132,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let element of bandejaTareas; let i = index;">
+                                <tr *ngFor="let element of tramites; let i = index;">
                                 <td><a routerLink="/expediente/acuse-recibo" [queryParams]= "{expediente: element.numeroExpediente}">{{ element.numeroExpediente }}</a></td>
                                 <td>{{ element.tramite }}  </td>
                                 <td>{{ element.tarea }}</td>
@@ -143,7 +143,7 @@
                                 </tr>
                             </tbody>
                             </table>
-                            <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="[pageSize]" (page)="getBandejaTareas($event)">
+                            <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="[pageSize]" (page)="getTramites($event)">
                             </mat-paginator>
                         </div>
                     </div>

@@ -3,10 +3,10 @@ import { CoreMenu } from '@core/types'
 export const menu: CoreMenu[] = [
   {
     id: 'home',
-    title: 'Bandeja de Tareas',
-    translate: 'Bandeja de Tareas',
+    title: 'Asignación de Trámites',
+    translate: 'Asignación de Trámites',
     type: 'item',
-    icon: 'home',
+    icon: '',
     url: 'main'
   },
   /*{
