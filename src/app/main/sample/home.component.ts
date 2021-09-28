@@ -147,12 +147,11 @@ export class HomeComponent implements OnInit {
             dialogRef.close();
             switch(res.error.code) {
               case 0: {
-                this.snackBar.open('El expediente ' + numeroExpediente + ' fue asignado al usuario ' + result.login + ' exitosamente.', 'Cerrar', {
-                  duration: 5000,
-                  horizontalPosition: 'end',
-                  verticalPosition: 'top'
-                }).afterDismissed().subscribe(() => {
-                  window.location.reload();
+                const dialogSuccessAsignacion = this.dialog.open(DialogSuccessAsignacion, {
+                  width: '600px',
+                  data: {numeroExpediente: numeroExpediente, usuario: result.login}
+                }).afterClosed().subscribe(() => {
+                  window.location.reload();   
                 });
                 break;
               }
@@ -268,4 +267,16 @@ export class DialogAsignaUsuario {
     return array.slice((page_number - 1) * page_size, page_number * page_size);
   }
 
+}
+
+@Component({
+  selector: 'app-dialog-success-asignacion',
+  templateUrl: 'app-dialog-success-asignacion.html',
+})
+export class DialogSuccessAsignacion {  
+  constructor(
+    public dialogRef: MatDialogRef<DialogSuccessAsignacion>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      dialogRef.disableClose = true;
+    }
 }
