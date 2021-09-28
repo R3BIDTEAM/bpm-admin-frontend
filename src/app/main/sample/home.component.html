@@ -50,6 +50,11 @@
                         <div class="d-flex justify-content-center my-1" *ngIf="loadingListadoTramites">
                             <div class="spinner-border" role="status" aria-hidden="true"></div>
                         </div>
+                        <ngb-alert [type]="'danger'" [dismissible]="false"  *ngIf="tramites.length == 0 && !loadingListadoTramites">
+                            <div class="alert-body">
+                              <p>No se encontraron datos.!</p>
+                            </div>
+                        </ngb-alert>
                         <div class="table-responsive">
                             <table class="table" *ngIf="tramites.length > 0 && !loadingListadoTramites">
                                 <thead class="thead-dark">

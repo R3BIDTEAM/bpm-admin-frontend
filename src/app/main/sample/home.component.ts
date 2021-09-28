@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit {
   getTramites(evt): void {
     this.pagina = evt.pageIndex + 1;
     
-    let listTramites = environment.endpointAPI + 'kreintoBPM?action=getBandejaTareas';
+    let listTramites = environment.endpointAPI + 'kreintoBPM?action=getExpedienteNoAsignados';
     
     let options = {
       headers: new HttpHeaders({
@@ -101,9 +101,18 @@ export class HomeComponent implements OnInit {
     this.loadingListadoTramites = true;
     this.http.post(listTramites,filtro, options).subscribe(
       (res: any) => {
-        this.total = res.data.conteo;
-        this.tramites = res.data.resultado;
         this.loadingListadoTramites = false;
+        if(res.error.code === 0)
+        {
+          this.total = res.data.conteo;
+          this.tramites = res.data.resultado;
+        } else {
+          this.snackBar.open(res.error.message, 'Cerrar', {
+            duration: 10000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+        }
       },
       (error) => {
         this.loadingListadoTramites = false;
