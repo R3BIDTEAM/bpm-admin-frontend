@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>Asignación de Usuario</h1>
+<div mat-dialog-content>
+    <fieldset>
+        <legend>Lista de usuarios</legend>
+        <div style="padding: 30px; text-align: center;" *ngIf="loadingPaginado">
+            <mat-spinner style="margin:0 auto;"></mat-spinner>
+            <p>Cargando...</p>
+        </div>
+        <ngb-alert [type]="'danger'" [dismissible]="false"  *ngIf="dataSource.length == 0 && !loadingPaginado">
+            <div class="alert-body">
+                <p>No se encontraron datos.!</p>
+            </div>
+        </ngb-alert>
+        
+        <div class="table-responsive">
+            <table class="table" *ngIf="dataSource.length > 0 && !loadingPaginado">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Rol</th>
+                        <th>Login</th>
+                        <th>Nombre</th>
+                        <th>Seleccionar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let element of dataSource; let i = index;">
+                        <td>{{ element.rol }}</td>
+                        <td>{{ element.login }}</td>
+                        <td>{{ element.nombre }} {{ element.apellidopaterno }} {{ element.apellidomaterno}}</td>
+                        <td>
+                            <mat-radio-group [(ngModel)]="usuario">
+                                <mat-radio-button [value]="element" (change)="usuarioSelected(element)"></mat-radio-button>
+                            </mat-radio-group>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="[pageSize]" (page)="paginado($event)">
+        </mat-paginator>
+        </div>
+    </fieldset>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" *ngIf="usuario" [mat-dialog-close]="usuario">Aceptar</button>
+    <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>

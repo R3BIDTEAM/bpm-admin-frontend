@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Inject } from '@angular/core'
 import { environment } from 'environments/environment';
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 import { AuthService } from "@core/services/auth.service";
 import { FormBuilder, FormGroup } from "@angular/forms";
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
     private snackBar: MatSnackBar,
     private _formBuilder: FormBuilder,
     private router: Router,
+    public dialog: MatDialog,
   ) {}
 
   public contentHeader: object
@@ -112,4 +114,85 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+  openDialogAsignaUsuario(numeroExpediente): void {
+    const dialogRef = this.dialog.open(DialogAsignaUsuario, {
+      width: '700px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        console.log(numeroExpediente);
+        console.log(result);
+      }
+    });
+  }
+}
+
+@Component({
+  selector: 'app-dialog-asigna-usuario',
+  templateUrl: 'app-dialog-asigna-usuario.html',
+})
+export class DialogAsignaUsuario {
+  endpoint = environment.ssoEndpoint + 'usuarios/plataforma/8';
+
+  loadingPaginado = false;
+  pagina = 0;
+  total = 0;
+  pageSize = 5;
+
+  dataSource = [];
+  dataResponse = [];
+  
+  usuario;
+  
+  constructor(
+    private http: HttpClient,
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<DialogAsignaUsuario>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      dialogRef.disableClose = true;
+    }
+
+  getData(): void {
+    this.loadingPaginado = true;
+    this.pagina = 1;
+  
+    this.http.get(this.endpoint).subscribe(
+      (res: any) => {
+        console.log(res)
+        this.loadingPaginado = false;
+          if(res.length > 0){
+            this.dataResponse = res;
+            this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
+            this.total = this.dataResponse.length;
+          } else {
+            this.dataResponse = [];
+            this.dataSource = [];
+            this.total = 0;
+          }
+      },
+      (error) => {
+        this.loadingPaginado = false;
+        this.snackBar.open(error.message, 'Cerrar', {
+          duration: 10000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top'
+        });
+      }
+    );
+  }
+
+  paginado(evt): void{
+    this.pagina = evt.pageIndex + 1;
+    this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
+  }
+
+  paginate(array, page_size, page_number) {
+    return array.slice((page_number - 1) * page_size, page_number * page_size);
+  }
+
+  usuarioSelected(element) {
+    console.log(element);
+  }
+
 }
