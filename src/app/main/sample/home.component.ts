@@ -148,11 +148,12 @@ export class HomeComponent implements OnInit {
             switch(res.error.code) {
               case 0: {
                 this.snackBar.open('El expediente ' + numeroExpediente + ' fue asignado al usuario ' + result.login + ' exitosamente.', 'Cerrar', {
-                  duration: 10000,
+                  duration: 5000,
                   horizontalPosition: 'end',
                   verticalPosition: 'top'
+                }).afterDismissed().subscribe(() => {
+                  window.location.reload();
                 });
-                window.location.reload();
                 break;
               }
               case 100: {
