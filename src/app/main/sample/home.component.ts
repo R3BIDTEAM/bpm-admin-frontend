@@ -147,12 +147,12 @@ export class HomeComponent implements OnInit {
             dialogRef.close();
             switch(res.error.code) {
               case 0: {
-                window.location.reload();
                 this.snackBar.open('El expediente ' + numeroExpediente + ' fue asignado al usuario ' + result.login + ' exitosamente.', 'Cerrar', {
                   duration: 10000,
                   horizontalPosition: 'end',
                   verticalPosition: 'top'
                 });
+                window.location.reload();
                 break;
               }
               case 100: {
