@@ -9,6 +9,39 @@ export const menu: CoreMenu[] = [
     icon: '',
     url: 'main'
   },
+  {
+    id: 'gestion_brigadas',
+    title: 'Gestion de Brigadas',
+    translate: 'Gestion de Brigradas',
+    type: 'collapsible',
+    icon: '',
+    children: [
+      {
+        id: 'brigadas',
+        title: 'Brigadas',
+        translate: 'Brigadas',
+        type: 'item',
+        url: 'brigadas',
+        icon: 'circle',
+      },
+      {
+        id: 'topografos',
+        title: 'Topografos',
+        translate: 'Topografos',
+        type: 'item',
+        url: 'topografos',
+        icon: 'circle',
+      },
+      {
+        id: 'cadeneros',
+        title: 'Cadeneros',
+        translate: 'Cadeneros',
+        type: 'item',
+        url: 'cadeneros',
+        icon: 'circle',
+      },
+    ]
+  },
   /*{
     id: 'registro',
     title: 'Registro',

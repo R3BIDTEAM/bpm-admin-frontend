@@ -1,0 +1,254 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <section id="home-page"></section>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h4 class="card-title">Configuracion de la brigada</h4>
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="formGroup">
+          <mat-list>
+            <mat-list-item>
+              Supervisor:
+              <span
+                *ngIf="supervisor; else elseSupervisor"
+                style="font-size: medium; font-weight: 500"
+                class="ml-1"
+              >
+                {{
+                  supervisor.nombre +
+                    ' ' +
+                    supervisor.apellidoPaterno +
+                    ' ' +
+                    supervisor.apellidoMaterno
+                }}
+                | {{ supervisor.rfc }}</span
+              >
+              <ng-template #elseSupervisor>
+                <span style="font-size: medium; font-weight: 500" class="ml-1">
+                  Sin supervisor asignado
+                </span>
+              </ng-template>
+            </mat-list-item>
+            <div style="margin-left: 1.2rem">
+              <div *ngIf="!loadingSupervisores; else elseLoadingSupervisores">
+                <mat-form-field appearance="outline">
+                  <mat-label>Supervisor:</mat-label>
+                  <mat-select name="supervisor" formControlName="supervisor">
+                    <mat-option
+                      *ngFor="let supervisor of supervisores"
+                      [value]="supervisor"
+                    >
+                      {{
+                        supervisor.nombre +
+                          ' ' +
+                          supervisor.apellidopaterno +
+                          ' ' +
+                          supervisor.apellidomaterno
+                      }}
+                      | {{ supervisor.rfc }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="formGroup.controls.supervisor.errors?.required"
+                    >Requerido</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <ng-template #elseLoadingSupervisores>
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+              </ng-template>
+            </div>
+            <mat-divider></mat-divider>
+            <mat-list-item
+              >Topografo:
+              <span
+                *ngIf="topografo; else elseTopografo"
+                style="font-size: medium; font-weight: 500"
+                class="ml-1"
+              >
+                {{
+                  topografo.nombre +
+                    ' ' +
+                    topografo.apellidoPaterno +
+                    ' ' +
+                    topografo.apellidoMaterno
+                }}
+                | {{ topografo.rfc }}</span
+              >
+              <ng-template #elseTopografo>
+                <span style="font-size: medium; font-weight: 500" class="ml-1">
+                  Sin topografo asignado
+                </span>
+              </ng-template>
+            </mat-list-item>
+            <div style="margin-left: 1.2rem">
+              <div *ngIf="!loadingTopografos; else elseLoadingTopografos">
+                <mat-form-field appearance="outline">
+                  <mat-label>Topografo:</mat-label>
+                  <mat-select name="topografo" formControlName="topografo">
+                    <mat-option
+                      *ngFor="let topografo of topografos"
+                      [value]="topografo"
+                    >
+                      {{
+                        topografo.nombre +
+                          ' ' +
+                          topografo.apellidoPaterno +
+                          ' ' +
+                          topografo.apellidoMaterno
+                      }}
+                      | {{ topografo.rfc }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="formGroup.controls.topografo.errors?.required"
+                    >Requerido</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <ng-template #elseLoadingTopografos>
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+              </ng-template>
+            </div>
+            <mat-divider></mat-divider>
+            <mat-list-item>Cadenero(s): </mat-list-item>
+            <mat-list role="list">
+              <div>
+                <mat-list-item role="listitem"
+                  >Cadenero 1:
+                  <span
+                    style="font-size: medium; font-weight: 500"
+                    *ngIf="cadenero1; else elseCadenero1"
+                    class="ml-1"
+                  >
+                    {{
+                      cadenero1.nombre +
+                        ' ' +
+                        cadenero1.apellidoPaterno +
+                        ' ' +
+                        cadenero1.apellidoMaterno
+                    }}
+                    | {{ cadenero1.rfc }}</span
+                  >
+                  <ng-template #elseCadenero1>
+                    <span
+                      style="font-size: medium; font-weight: 500"
+                      class="ml-1"
+                    >
+                      Sin cadenero 1 asignado
+                    </span>
+                  </ng-template>
+                </mat-list-item>
+                <div style="margin-left: 1.2rem">
+                  <div *ngIf="!loadingCadeneros; else elseLoadingCadeneros">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Cadenero 1:</mat-label>
+                      <mat-select name="cadenero1" formControlName="cadenero1">
+                        <mat-option
+                          *ngFor="let cadenero of cadeneros"
+                          [value]="cadenero"
+                        >
+                          {{
+                            cadenero.nombre +
+                              ' ' +
+                              cadenero.apellidoPaterno +
+                              ' ' +
+                              cadenero.apellidoMaterno
+                          }}
+                          | {{ cadenero.rfc }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="formGroup.controls.cadenero1.errors?.required"
+                        >Requerido</mat-error
+                      >
+                    </mat-form-field>
+                  </div>
+                  <ng-template #elseLoadingCadeneros>
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                  </ng-template>
+                </div>
+              </div>
+              <div>
+                <mat-list-item role="listitem">
+                  Cadenero 2:<span
+                    style="font-size: medium; font-weight: 500"
+                    *ngIf="cadenero2; else elseCadenero2"
+                    class="ml-1"
+                  >
+                    {{
+                      cadenero2.nombre +
+                        ' ' +
+                        cadenero2.apellidoPaterno +
+                        ' ' +
+                        cadenero2.apellidoMaterno
+                    }}
+                    | {{ cadenero2.rfc }}</span
+                  >
+                  <ng-template #elseCadenero2>
+                    <span
+                      style="font-size: medium; font-weight: 500"
+                      class="ml-1"
+                    >
+                      Sin cadenero 2 asignado
+                    </span>
+                  </ng-template>
+                </mat-list-item>
+                <div style="margin-left: 1.2rem">
+                  <div *ngIf="!loadingCadeneros; else elseLoadingCadeneros2">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Cadenero 2:</mat-label>
+                      <mat-select name="cadenero2" formControlName="cadenero2">
+                        <mat-option
+                          *ngFor="let cadenero of cadeneros"
+                          [value]="cadenero"
+                        >
+                          {{
+                            cadenero.nombre +
+                              ' ' +
+                              cadenero.apellidoPaterno +
+                              ' ' +
+                              cadenero.apellidoMaterno
+                          }}
+                          | {{ cadenero.rfc }}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="formGroup.controls.cadenero2.errors?.required"
+                        >Requerido</mat-error
+                      >
+                    </mat-form-field>
+                  </div>
+                  <ng-template #elseLoadingCadeneros2>
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                  </ng-template>
+                </div>
+              </div>
+            </mat-list>
+          </mat-list>
+        </form>
+        <div class="row row-m-t">
+          <div class="col-12 text-right">
+            <button
+              mat-stroked-button
+              color="primary"
+              aria-label="Finalizar Tarea"
+              (click)="save()"
+              [disabled]="formGroup.invalid"
+            >
+              Finalizar Tarea<mat-icon style="display: inherit; width: 15px"
+                >check</mat-icon
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
