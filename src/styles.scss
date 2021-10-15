@@ -86,3 +86,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   position: fixed;
   z-index: 10000 !important;
 }
+
+// @import "tailwindcss/base";
+// @import "tailwindcss/components";
+@import "tailwindcss/utilities";

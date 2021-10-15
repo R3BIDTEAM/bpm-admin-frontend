@@ -1,0 +1,75 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <section id="home-page">
+      <!-- <div class="row">
+				<div class="col-12"> -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h4 class="card-title">Topógrafos</h4>
+          </div>
+          <div>
+            <button
+              mat-raised-button
+              color="primary"
+              routerLink="/topografos/crear"
+            >
+              CREAR TOPOGRAFO
+            </button>
+          </div>
+        </div>
+        <div class="card-body pb-1">
+          <div *ngIf="loadingBrigadas; else elseLoading" class="mb-1">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </div>
+          <ng-template #elseLoading>
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th>No.</th>
+                  <th>Nombre</th>
+                  <th>Ap. Paterno</th>
+                  <th>Ap. Materno</th>
+                  <th>RFC</th>
+                  <th>Telefono</th>
+                  <th>Activo</th>
+                  <th>Fecha creacion</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let element of brigadas; let i = index">
+                  <td>
+                    {{ i + 1 }}
+                  </td>
+                  <td>{{ element.nombre }}</td>
+                  <td>{{ element.apellidoPaterno }}</td>
+                  <td>{{ element.apellidoMaterno }}</td>
+                  <td>{{ element.rfc }}</td>
+                  <td>{{ element.celular }}</td>
+                  <td>
+                    {{ element.active ? 'SI' : 'NO' }}
+                  </td>
+                  <td>
+                    {{ element.insertTime.$date | date: 'dd/MM/yyyy' }}
+                  </td>
+                  <td>
+                    <a
+                      style="color: #a02042"
+                      (click)="deleteTopografo(element._id.$oid)"
+                      >Eliminar topógrafo</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-template>
+        </div>
+      </div>
+      <!-- </div>
+			</div> -->
+    </section>
+  </div>
+</div>
