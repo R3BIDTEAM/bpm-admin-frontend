@@ -40,7 +40,8 @@
                     {{ element.insertTime.$date | date: 'dd/MM/yyyy' }}
                   </td>
                   <td>
-                    <a style="color: #a02042" (click)="navigateToDetail(element)">Configurar brigadas</a>
+                    <a style="color: #a02042" (click)="navigateToDetail(element)">Configurar</a>
+                    <a style="color: #a02042" (click)="deleteDetail(element._id.$oid)" class="ml-1">Eliminar</a>
                   </td>
                 </tr>
               </tbody>
