@@ -16,7 +16,7 @@
             <div class="row tw-mb-1">
               <div class="col-md-4 col-sm-12">
                 <mat-form-field appearance="outline" class="tw-w-full">
-                  <mat-label>Nombre:</mat-label>
+                  <mat-label>Nombre: *</mat-label>
                   <input matInput formControlName="nombre" placeholder="Nombre" />
                   <mat-error *ngIf="formGroup.controls.nombre.errors?.required"
                     >Requerido</mat-error
@@ -26,7 +26,7 @@
   
               <div class="col-md-4 col-sm-12">
                 <mat-form-field appearance="outline" class="tw-w-full">
-                  <mat-label>Apellido Paterno:</mat-label>
+                  <mat-label>Apellido Paterno: *</mat-label>
                   <input
                     matInput
                     formControlName="apellidoPaterno"
@@ -41,7 +41,7 @@
   
               <div class="col-md-4 col-sm-12">
                 <mat-form-field appearance="outline" class="tw-w-full">
-                  <mat-label>Apellido Materno:</mat-label>
+                  <mat-label>Apellido Materno: *</mat-label>
                   <input
                     matInput
                     formControlName="apellidoMaterno"
@@ -54,7 +54,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="row tw-mb-1">
+            <!-- <div class="row tw-mb-1">
               <div class="col-md-4 col-sm-12">
                 <mat-form-field appearance="outline" class="tw-w-full">
                   <mat-label>CURP:</mat-label>
@@ -98,7 +98,7 @@
                   >
                 </mat-form-field>
               </div>
-            </div>
+            </div> -->
             <div class="row tw-mb-1">
               <div class="col-md-4 col-sm-12">
                 <mat-form-field appearance="outline" class="tw-w-full">
@@ -109,9 +109,7 @@
                     placeholder="Correo Electronico"
                     type="email"
                   />
-                  <mat-error *ngIf="formGroup.controls.email.errors?.required"
-                    >Requerido</mat-error
-                  >
+                  <mat-error *ngIf="formGroup.controls.email.errors?.email">La estructura del correo es errónea</mat-error>
                 </mat-form-field>
               </div>
   
@@ -122,14 +120,14 @@
                     matInput
                     formControlName="celular"
                     placeholder="telefono"
+                    maxlength="10"
                   />
-                  <mat-error *ngIf="formGroup.controls.celular.errors?.required"
-                    >Requerido</mat-error
-                  >
+                  <mat-error *ngIf="formGroup.controls.celular.errors?.minlength">El número celular debe de contener 10 digitos</mat-error>
+                  <mat-error *ngIf="formGroup.controls.celular.errors?.maxlength">El número celular debe de contener 10 digitos</mat-error>
                 </mat-form-field>
               </div>
   
-              <div class="col-md-4 col-sm-12">
+              <!-- <div class="col-md-4 col-sm-12">
                 <mat-form-field appearance="outline" class="tw-w-full">
                   <mat-label>Otros:</mat-label>
                   <input matInput formControlName="otros" placeholder="Otros" />
@@ -137,7 +135,7 @@
                     >Requerido</mat-error
                   >
                 </mat-form-field>
-              </div>
+              </div> -->
             </div>
           </form>
           <div class="row row-m-t">
@@ -145,11 +143,11 @@
               <button
                 mat-stroked-button
                 color="primary"
-                aria-label="Finalizar Tarea"
+                aria-label="Guardar"
                 (click)="save()"
                 [disabled]="formGroup.invalid"
               >
-                Finalizar Tarea<mat-icon style="display: inherit; width: 15px"
+                Guardar<mat-icon style="display: inherit; width: 15px"
                   >check</mat-icon
                 >
               </button>
