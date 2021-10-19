@@ -20,15 +20,15 @@ export class CrearcadeneroComponent implements OnInit {
     private router: Router
   ) {
     this.formGroup = this._formBuilder.group({
-      curp: [null, [Validators.required]],
+      //curp: [null, [Validators.required]],
       nombre: [null, [Validators.required]],
       apellidoPaterno: [null, [Validators.required]],
       apellidoMaterno: [null, [Validators.required]],
-      rfc: [null, [Validators.required]],
-      claveIne: [null, [Validators.required]],
-      otros: [null, [Validators.required]],
-      celular: [null, [Validators.required]],
-      email: [null, [Validators.required]]
+      // rfc: [null, [Validators.required]],
+      // claveIne: [null, [Validators.required]],
+      // otros: [null, [Validators.required]],
+      celular: [null, [Validators.minLength(10), Validators.maxLength(10)]],
+      email: [null, [Validators.email]]
     });
   }
 
@@ -80,7 +80,7 @@ export class CrearcadeneroComponent implements OnInit {
     this.loadingSave = true;
     this.http.post(uri, brigadaEnvio, this.options).subscribe(
       (res: any) => {
-        console.log(res.error.code);
+        console.log(res);
         switch (res.error.code) {
           case 502: {
             this.loadingSave = false;
@@ -94,8 +94,8 @@ export class CrearcadeneroComponent implements OnInit {
           case 505: {
             this.loadingSave = false;
             Swal.fire({
-              title: 'Tarea Finalizada',
-              text: 'La tarea finalizo con exito',
+              title: '',
+              html: 'Se guardó el Cadenero <b>'+ res.data.nombre + ' ' + res.data.apellidoPaterno + ' ' + res.data.apellidoMaterno +'</b> con éxito',
               icon: 'success',
               confirmButtonColor: '#a02042',
               showCancelButton: false,
@@ -107,8 +107,8 @@ export class CrearcadeneroComponent implements OnInit {
           case 0: {
             this.loadingSave = false;
             Swal.fire({
-              title: 'Tarea Finalizada',
-              text: 'La tarea finalizo con exito',
+              title: '',
+              html: 'Se guardó el Cadenero <b>'+ res.data.nombre + ' ' + res.data.apellidoPaterno + ' ' + res.data.apellidoMaterno +'</b> con éxito',
               icon: 'success',
               confirmButtonColor: '#a02042',
               showCancelButton: false,
