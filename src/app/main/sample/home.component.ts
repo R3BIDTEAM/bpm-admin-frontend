@@ -84,6 +84,8 @@ export class HomeComponent implements OnInit {
       headers: new HttpHeaders({
         login: this.auth.getSession().userData.login,
         rol: this.auth.getSession().userData.rol.toString(),
+        apellidos: this.auth.getSession().userData.primer_apellido + ' ' + this.auth.getSession().userData.segundo_apellido,
+        nombre: this.auth.getSession().userData.nombre
       })
     }
     
@@ -138,6 +140,8 @@ export class HomeComponent implements OnInit {
           headers: new HttpHeaders({
             login: this.auth.getSession().userData.login,
             rol: this.auth.getSession().userData.rol.toString(),
+            apellidos: this.auth.getSession().userData.primer_apellido + ' ' + this.auth.getSession().userData.segundo_apellido,
+            nombre: this.auth.getSession().userData.nombre
           })
         };
 
