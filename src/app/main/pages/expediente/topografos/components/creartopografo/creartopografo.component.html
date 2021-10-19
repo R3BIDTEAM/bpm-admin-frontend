@@ -120,6 +120,7 @@
                   matInput
                   formControlName="celular"
                   placeholder="telefono"
+                  maxlength="10"
                 />
                 <mat-error *ngIf="formGroup.controls.celular.errors?.minlength">El número telefónico debe contener 10 digitos</mat-error>
                 <mat-error *ngIf="formGroup.controls.celular.errors?.maxlength">El número telefónico debe contener 10 digitos</mat-error>
