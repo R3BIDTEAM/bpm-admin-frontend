@@ -24,6 +24,7 @@ export class CrearComponent implements OnInit {
   loadingSave = false;
   formGroup: FormGroup;
 
+  nombre = null;
   supervisor = null;
   topografo = null;
   cadenero1 = null;
@@ -49,6 +50,7 @@ export class CrearComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.formGroup = this._formBuilder.group({
+      nombre: [null, [Validators.required]],
       supervisor: [null, [Validators.required]],
       topografo: [null, [Validators.required]],
       cadenero1: [null, [Validators.required]],
@@ -156,6 +158,7 @@ export class CrearComponent implements OnInit {
 
     const brigadaEnvio = {};
 
+    brigadaEnvio['nombre'] = this.formGroup.value.nombre;
     brigadaEnvio['supervisor'] = supervisor;
     brigadaEnvio['topografo'] = this.formGroup.value.topografo;
     brigadaEnvio['cadenero1'] = this.formGroup.value.cadenero1;
@@ -180,8 +183,8 @@ export class CrearComponent implements OnInit {
           case 505: {
             this.loadingSave = false;
             Swal.fire({
-              title: 'Tarea Finalizada',
-              text: 'La tarea finalizo con exito',
+              title: '',
+              html: 'Se guardó la brigada' + ' <b>' + res.data.nombre + '</b> ' + 'con éxito',
               icon: 'success',
               confirmButtonColor: '#a02042',
               showCancelButton: false,
@@ -193,8 +196,8 @@ export class CrearComponent implements OnInit {
           case 0: {
             this.loadingSave = false;
             Swal.fire({
-              title: 'Tarea Finalizada',
-              text: 'La tarea finalizo con exito',
+              title: '',
+              html: 'Se guardó la brigada' + ' <b>' + res.data.nombre + '</b> ' + 'con éxito',
               icon: 'success',
               confirmButtonColor: '#a02042',
               showCancelButton: false,

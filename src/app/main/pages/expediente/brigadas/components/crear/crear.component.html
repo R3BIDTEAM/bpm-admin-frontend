@@ -13,6 +13,14 @@
       <div class="card-body">
         <form [formGroup]="formGroup">
           <mat-list>
+            <mat-list-item> Nombre: </mat-list-item>
+            <div style="margin-left: 1.2rem; width: 360px!important;">
+              <mat-form-field appearance="outline">
+                <mat-label>Nombre:</mat-label>
+                <input matInput placeholder="Placeholder" name="nombre" formControlName="nombre"/>
+              </mat-form-field>
+            </div>
+            <mat-divider></mat-divider>
             <mat-list-item> Supervisor: </mat-list-item>
             <div style="margin-left: 1.2rem">
               <div *ngIf="!loadingSupervisores; else elseLoadingSupervisores">
@@ -149,11 +157,11 @@
             <button
               mat-stroked-button
               color="primary"
-              aria-label="Finalizar Tarea"
+              aria-label="Guardar"
               (click)="save()"
               [disabled]="formGroup.invalid"
             >
-              Finalizar Tarea<mat-icon style="display: inherit; width: 15px"
+              Guardar<mat-icon style="display: inherit; width: 15px"
                 >check</mat-icon
               >
             </button>
