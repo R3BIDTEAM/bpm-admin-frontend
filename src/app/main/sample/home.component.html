@@ -75,7 +75,7 @@
                                         <td>{{ element.tarea }}</td>
                                         <td>{{ element.estado }}</td>
                                         <td>{{ element.fechaAsignacion | date:'yyyy-MM-dd' }}</td>
-                                        <td> Falta en el servicio </td>
+                                        <td>{{ element.promovente }}</td>
                                         <td>
                                             <button type="button" mat-icon-button color="primary" aria-label="Asignar" matTooltip="Asignar" (click)="openDialogAsignaUsuario(element.numeroExpediente)">
                                                 <mat-icon>person_add</mat-icon>
