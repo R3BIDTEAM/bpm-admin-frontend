@@ -26,8 +26,8 @@ export const menu: CoreMenu[] = [
       },
       {
         id: 'topografos',
-        title: 'Topografos',
-        translate: 'Topografos',
+        title: 'Topógrafos',
+        translate: 'Topógrafos',
         type: 'item',
         url: 'topografos',
         icon: 'circle',

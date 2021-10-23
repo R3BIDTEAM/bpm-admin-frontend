@@ -43,9 +43,9 @@ export class CadenerosComponent implements OnInit {
         type: '',
         links: [
           {
-            name: 'Asignación de trámites',
+            name: 'Cadeneros de Topógrafos',
             link: '/main',
-            isLink: true
+            isLink: false
           },
           {
             name: 'Cadeneros',

@@ -43,9 +43,9 @@ export class BrigadasComponent implements OnInit {
         type: '',
         links: [
           {
-            name: 'Asignacion de tramites',
+            name: 'Listado de brigadas',
             link: '/main',
-            isLink: true
+            isLink: false
           },
           {
             name: 'Brigadas',

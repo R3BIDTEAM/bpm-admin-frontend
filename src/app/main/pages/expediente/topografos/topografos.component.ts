@@ -42,9 +42,9 @@ export class TopografosComponent implements OnInit {
         type: '',
         links: [
           {
-            name: 'Asignación de trámites',
+            name: 'Listado de Topógrafos',
             link: '/main',
-            isLink: true
+            isLink: false
           },
           {
             name: 'Topógrafos',
