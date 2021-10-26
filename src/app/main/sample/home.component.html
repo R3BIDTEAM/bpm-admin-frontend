@@ -5,94 +5,141 @@
 
     <!-- Basic Alerts start -->
     <section id="home-page">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Filtros</h4>
-                    </div>
-                    <div class="card-body pb-1">
-                        <form [formGroup]="filtroForm">
-                            <div class="row">
-                                <div class="col-md-3">
-                                </div>
-                                <div class="col-md-6">
-                                    <mat-form-field appearance="outline" style="width: 100%;" >
-                                        <mat-label>N° Expediente</mat-label>
-                                        <input matInput placeholder="N° Expediente" formControlName="expediente">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-3">
-                                </div>
-                            </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Filtros</h4>
+            </div>
+            <div class="card-body pb-1">
+              <form [formGroup]="filtroForm">
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6">
+                    <mat-form-field appearance="outline" style="width: 100%">
+                      <mat-label>N° Expediente</mat-label>
+                      <input
+                        matInput
+                        placeholder="N° Expediente"
+                        formControlName="expediente"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
 
-                            <div class="row">
-                                <div class="col-md-5">
-                                </div>
-                                <div class="col-md-2">
-                                    <button mat-stroked-button color="primary" aria-label="Buscar" (click)="search()">
-                                        Buscar<mat-icon style="display: inherit; width: 15px;">search</mat-icon>
-                                    </button>
-                                </div>
-                                <div class="col-md-5">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                <div class="row">
+                  <div class="col-md-5"></div>
+                  <div class="col-md-2">
+                    <button
+                      mat-stroked-button
+                      color="primary"
+                      aria-label="Buscar"
+                      (click)="search()"
+                    >
+                      Buscar<mat-icon style="display: inherit; width: 15px"
+                        >search</mat-icon
+                      >
+                    </button>
+                  </div>
+                  <div class="col-md-5"></div>
                 </div>
+              </form>
             </div>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Listado</h4>
-                        <div class="d-flex justify-content-center my-1" *ngIf="loadingListadoTramites">
-                            <div class="spinner-border" role="status" aria-hidden="true"></div>
-                        </div>
-                        <ngb-alert [type]="'danger'" [dismissible]="false"  *ngIf="tramites.length == 0 && !loadingListadoTramites">
-                            <div class="alert-body">
-                              <p>No se encontraron datos.!</p>
-                            </div>
-                        </ngb-alert>
-                        <div class="table-responsive">
-                            <table class="table" *ngIf="tramites.length > 0 && !loadingListadoTramites">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Expediente</th>
-                                        <th>Tipo / Subtipo</th>
-                                        <th>Actividad</th>
-                                        <th>Estado </th>
-                                        <th>Asignación </th>
-                                        <th>Promovente</th>
-                                        <th>Asignar Usuario</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let element of tramites; let i = index;">
-                                        <td>{{ element.numeroExpediente }}</td>
-                                        <td>{{ element.tramite }}  </td>
-                                        <td>{{ element.tarea }}</td>
-                                        <td>{{ element.estado }}</td>
-                                        <td>{{ element.fechaAsignacion | date:'yyyy-MM-dd' }}</td>
-                                        <td>{{ element.promovente }}</td>
-                                        <td>
-                                            <button type="button" mat-icon-button color="primary" aria-label="Asignar" matTooltip="Asignar" (click)="openDialogAsignaUsuario(element.numeroExpediente)">
-                                                <mat-icon>person_add</mat-icon>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="[pageSize]" (page)="getTramites($event)">
-                            </mat-paginator>
-                        </div>
-                    </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Listado</h4>
+              <div
+                class="d-flex justify-content-center my-1"
+                *ngIf="loadingListadoTramites"
+              >
+                <div
+                  class="spinner-border"
+                  role="status"
+                  aria-hidden="true"
+                ></div>
+              </div>
+              <ngb-alert
+                [type]="'danger'"
+                [dismissible]="false"
+                *ngIf="tramites.length == 0 && !loadingListadoTramites"
+              >
+                <div class="alert-body">
+                  <p>No se encontraron datos.!</p>
                 </div>
+              </ngb-alert>
+              <div class="table-responsive">
+                <table
+                  class="table"
+                  *ngIf="tramites.length > 0 && !loadingListadoTramites"
+                >
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>Expediente</th>
+                      <th>Tipo de Trámite</th>
+                      <th>Tarea</th>
+                      <th>Estado</th>
+                      <th>Asignación</th>
+                      <th>Fecha de Ingreso</th>
+                      <th>Cuenta catastral</th>
+                      <th>Asignar Usuario</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let element of tramites; let i = index">
+                      <td>{{ element.numeroExpediente }}</td>
+                      <td>{{ element.tramite }}</td>
+                      <td>{{ element.tarea }}</td>
+                      <td>{{ element.estado }}</td>
+                      <td>
+                        {{ element.fechaAsignacion | date: "dd/MM/yyyy" }}
+                      </td>
+                      <td>
+                        {{ element.fechaIngreso | date: 'dd/MM/yyyy' }}
+                      </td>
+                      <td>
+                        {{ element.expedienteInmueble.region }}-{{
+                          element.expedienteInmueble.manzana
+                        }}-{{ element.expedienteInmueble.lote }}-{{
+                          element.expedienteInmueble.unidadPrivativa
+                        }}
+                      </td>
+                      <td>
+                        <button
+                          type="button"
+                          mat-icon-button
+                          color="primary"
+                          aria-label="Asignar"
+                          matTooltip="Asignar"
+                          (click)="
+                            openDialogAsignaUsuario(element.numeroExpediente)
+                          "
+                        >
+                          <mat-icon>person_add</mat-icon>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <mat-paginator
+                  [length]="total"
+                  [pageSize]="pageSize"
+                  [pageSizeOptions]="[pageSize]"
+                  (page)="getTramites($event)"
+                >
+                </mat-paginator>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
-    
+
     <!-- Basic Alerts end -->
   </div>
 </div>
