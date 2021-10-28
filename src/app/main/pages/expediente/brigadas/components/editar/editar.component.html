@@ -13,6 +13,18 @@
       <div class="card-body">
         <form [formGroup]="formGroup">
           <mat-list>
+            <mat-list-item> Nombre: </mat-list-item>
+            <div style="margin-left: 1.2rem; width: 360px !important">
+              <mat-form-field appearance="outline">
+                <mat-label>Nombre:</mat-label>
+                <input
+                  matInput
+                  placeholder="Placeholder"
+                  name="nombre"
+                  formControlName="nombre"
+                />
+              </mat-form-field>
+            </div>
             <mat-list-item>
               Supervisor:
               <span

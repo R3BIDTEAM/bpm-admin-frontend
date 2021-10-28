@@ -134,6 +134,8 @@ export class CrearComponent implements OnInit {
     const hoy = Date.now();
 
     const supervisorData = {
+      rol: supervisor.id_rol,
+      login: supervisor.login,
       claveIne: supervisor.ife || '',
       insertTime: {
         $date: hoy
@@ -163,8 +165,6 @@ export class CrearComponent implements OnInit {
     brigadaEnvio['topografo'] = this.formGroup.value.topografo;
     brigadaEnvio['cadenero1'] = this.formGroup.value.cadenero1;
     brigadaEnvio['cadenero2'] = this.formGroup.value.cadenero2;
-
-    console.log(brigadaEnvio);
 
     this.loadingSave = true;
     this.http.post(uri, brigadaEnvio, this.options).subscribe(

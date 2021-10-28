@@ -49,91 +49,8 @@ export class EditarComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.brigada = this.router.getCurrentNavigation().extras.state;
-    /* this.brigada = {
-      cadenero2: {
-        claveIne: '',
-        insertTime: {
-          $date: '2021-09-21T22:23:08.397Z'
-        },
-        apellidoPaterno: 'flores',
-        otros: '',
-        celular: '5553257846',
-        active: true,
-        _id: {
-          $oid: '614a5b4cd3f2c66466e9ca98'
-        },
-        nombre: 'jose',
-        curp: 'masa590530hdfrhb00',
-        rfc: 'masa590530123',
-        email: 'name@dom.com',
-        apellidoMaterno: 'vargas'
-      },
-      insertTime: {
-        $date: '2021-09-21T22:41:37.037Z'
-      },
-      cadenero1: {
-        claveIne: '',
-        insertTime: {
-          $date: '2021-09-21T22:42:40.686Z'
-        },
-        apellidoPaterno: 'flores',
-        otros: '',
-        celular: '5553257846',
-        active: true,
-        _id: {
-          $oid: '614a5fe0d3f2c66466e9ca9c'
-        },
-        nombre: 'jose nuevo',
-        curp: 'masa590530hdfrhb00',
-        rfc: 'masa590530123',
-        email: 'name@dom.com',
-        apellidoMaterno: 'vargas'
-      },
-      active: true,
-      updateTime: {
-        $date: '2021-09-21T22:59:15.28Z'
-      },
-      _id: {
-        $oid: '614a5fa1d3f2c66466e9ca9a'
-      },
-      topografo: {
-        claveIne: '',
-        insertTime: {
-          $date: '2021-09-21T22:22:39.507Z'
-        },
-        apellidoPaterno: 'flores',
-        otros: '',
-        celular: '5553257846',
-        active: true,
-        _id: {
-          $oid: '614a5b2fd3f2c66466e9ca97'
-        },
-        nombre: 'jose',
-        curp: 'masa590530hdfrhb00',
-        rfc: 'masa590530123',
-        email: 'name@dom.com',
-        apellidoMaterno: 'vargas'
-      },
-      supervisor: {
-        claveIne: '',
-        insertTime: {
-          $date: '2021-09-21T22:22:39.507Z'
-        },
-        apellidoPaterno: 'flores',
-        otros: '',
-        celular: '5553257846',
-        active: true,
-        _id: {
-          $oid: '614a5b2fd3f2c66466e9ca97'
-        },
-        nombre: 'jose',
-        curp: 'masa590530hdfrhb00',
-        rfc: 'masa590530123',
-        email: 'name@dom.com',
-        apellidoMaterno: 'vargas'
-      }
-    }; */
     this.formGroup = this._formBuilder.group({
+      nombre: [null, [Validators.required]],
       supervisor: [null, [Validators.required]],
       topografo: [null, [Validators.required]],
       cadenero1: [null, [Validators.required]],
@@ -166,6 +83,8 @@ export class EditarComponent implements OnInit {
     this.topografo = this.brigada?.topografo;
     this.cadenero1 = this.brigada?.cadenero1;
     this.cadenero2 = this.brigada?.cadenero2;
+    this.formGroup.controls['nombre'].setValue(this.brigada?.nombre);
+
 
     (async () => {
       await this.getSupervisores();
@@ -223,6 +142,8 @@ export class EditarComponent implements OnInit {
     const hoy = Date.now();
 
     const supervisorData = {
+      rol: supervisor.id_rol,
+      login: supervisor.login,
       claveIne: supervisor.ife || '',
       insertTime: {
         $date: hoy
@@ -247,6 +168,7 @@ export class EditarComponent implements OnInit {
 
     let brigadaEnvio = this.brigada;
 
+    brigadaEnvio['nombre'] = this.formGroup.value.nombre;
     brigadaEnvio['supervisor'] = supervisor;
     brigadaEnvio['topografo'] = this.formGroup.value.topografo;
     brigadaEnvio['cadenero1'] = this.formGroup.value.cadenero1;
