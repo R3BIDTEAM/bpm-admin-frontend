@@ -160,11 +160,13 @@ export class CrearComponent implements OnInit {
 
     const brigadaEnvio = {};
 
-    brigadaEnvio['nombre'] = this.formGroup.value.nombre;
+    brigadaEnvio['nombreBrigada'] = this.formGroup.value.nombre;
     brigadaEnvio['supervisor'] = supervisor;
     brigadaEnvio['topografo'] = this.formGroup.value.topografo;
     brigadaEnvio['cadenero1'] = this.formGroup.value.cadenero1;
     brigadaEnvio['cadenero2'] = this.formGroup.value.cadenero2;
+
+    console.log(brigadaEnvio);
 
     this.loadingSave = true;
     this.http.post(uri, brigadaEnvio, this.options).subscribe(
@@ -184,7 +186,7 @@ export class CrearComponent implements OnInit {
             this.loadingSave = false;
             Swal.fire({
               title: '',
-              html: 'Se guardó la brigada' + ' <b>' + res.data.nombre + '</b> ' + 'con éxito',
+              html: 'Se guardó la brigada' + ' <b>' + res.data.nombreBrigada + '</b> ' + 'con éxito',
               icon: 'success',
               confirmButtonColor: '#a02042',
               showCancelButton: false,
@@ -197,7 +199,7 @@ export class CrearComponent implements OnInit {
             this.loadingSave = false;
             Swal.fire({
               title: '',
-              html: 'Se guardó la brigada' + ' <b>' + res.data.nombre + '</b> ' + 'con éxito',
+              html: 'Se guardó la brigada' + ' <b>' + res.data.nombreBrigada + '</b> ' + 'con éxito',
               icon: 'success',
               confirmButtonColor: '#a02042',
               showCancelButton: false,
