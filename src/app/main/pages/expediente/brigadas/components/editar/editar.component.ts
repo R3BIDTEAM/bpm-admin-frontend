@@ -83,7 +83,7 @@ export class EditarComponent implements OnInit {
     this.topografo = this.brigada?.topografo;
     this.cadenero1 = this.brigada?.cadenero1;
     this.cadenero2 = this.brigada?.cadenero2;
-    this.formGroup.controls['nombre'].setValue(this.brigada?.nombre);
+    this.formGroup.controls['nombre'].setValue(this.brigada?.nombre || this.brigada?.nombreBrigada);
 
 
     (async () => {
@@ -168,7 +168,7 @@ export class EditarComponent implements OnInit {
 
     let brigadaEnvio = this.brigada;
 
-    brigadaEnvio['nombre'] = this.formGroup.value.nombre;
+    brigadaEnvio['nombreBrigada'] = this.formGroup.value.nombre;
     brigadaEnvio['supervisor'] = supervisor;
     brigadaEnvio['topografo'] = this.formGroup.value.topografo;
     brigadaEnvio['cadenero1'] = this.formGroup.value.cadenero1;
