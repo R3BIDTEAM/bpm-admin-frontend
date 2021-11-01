@@ -83,7 +83,7 @@ export class EditarComponent implements OnInit {
     this.topografo = this.brigada?.topografo;
     this.cadenero1 = this.brigada?.cadenero1;
     this.cadenero2 = this.brigada?.cadenero2;
-    this.formGroup.controls['nombre'].setValue(this.brigada?.nombre);
+    this.formGroup.controls['nombre'].setValue(this.brigada?.nombreBrigada);
 
 
     (async () => {
