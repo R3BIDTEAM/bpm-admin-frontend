@@ -51,15 +51,14 @@ export class EditarComponent implements OnInit {
     this.brigada = this.router.getCurrentNavigation().extras.state;
     this.formGroup = this._formBuilder.group({
       nombre: [null, [Validators.required]],
-      supervisor: [null, [Validators.required]],
-      topografo: [null, [Validators.required]],
-      cadenero1: [null, [Validators.required]],
-      cadenero2: [null, [Validators.required]]
+      supervisor: [null, []],
+      topografo: [null, []],
+      cadenero1: [null, []],
+      cadenero2: [null, []]
     });
   }
 
   ngOnInit(): void {
-    console.log(this.brigada);
     this.contentHeader = {
       headerTitle: 'Editar brigada',
       actionButton: true,
@@ -83,7 +82,11 @@ export class EditarComponent implements OnInit {
     this.topografo = this.brigada?.topografo;
     this.cadenero1 = this.brigada?.cadenero1;
     this.cadenero2 = this.brigada?.cadenero2;
-
+    
+    this.formGroup.controls['supervisor'].setValue(this.brigada?.supervisor);
+    this.formGroup.controls['topografo'].setValue(this.brigada?.topografo);
+    this.formGroup.controls['cadenero1'].setValue(this.brigada?.cadenero1);
+    this.formGroup.controls['cadenero2'].setValue(this.brigada?.cadenero2);
     this.formGroup.controls['nombre'].setValue(this.brigada?.nombre || this.brigada?.nombreBrigada);
 
 
@@ -102,7 +105,6 @@ export class EditarComponent implements OnInit {
       (res: any) => {
         this.supervisores = res;
         this.loadingSupervisores = false;
-        console.log(this.supervisores);
       },
       (error) => {
         this.loadingSupervisores = false;
@@ -116,7 +118,6 @@ export class EditarComponent implements OnInit {
       (res: any) => {
         this.topografos = res.data.respuesta;
         this.loadingTopografos = false;
-        console.log(this.topografos);
       },
       (error) => {
         this.loadingTopografos = false;
@@ -130,7 +131,6 @@ export class EditarComponent implements OnInit {
       (res: any) => {
         this.cadeneros = res.data.respuesta;
         this.loadingCadeneros = false;
-        console.log(this.cadeneros);
       },
       (error) => {
         this.loadingCadeneros = false;
@@ -175,12 +175,11 @@ export class EditarComponent implements OnInit {
     brigadaEnvio['cadenero1'] = this.formGroup.value.cadenero1;
     brigadaEnvio['cadenero2'] = this.formGroup.value.cadenero2;
 
-    console.log(brigadaEnvio);
+    console.log(brigadaEnvio['topografo']);
 
     this.loadingSave = true;
     this.http.post(uri, brigadaEnvio, this.options).subscribe(
       (res: any) => {
-        console.log(res.error.code);
         switch (res.error.code) {
           case 502: {
             this.loadingSave = false;
