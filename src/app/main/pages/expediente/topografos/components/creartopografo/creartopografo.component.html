@@ -109,7 +109,9 @@
                   placeholder="Correo Electronico"
                   type="email"
                 />
-                <mat-error *ngIf="formGroup.controls.email.errors?.email">La estructura del correo es errónea</mat-error>
+                <mat-error *ngIf="formGroup.controls.email.errors?.email"
+                  >La estructura del correo es errónea</mat-error
+                >
               </mat-form-field>
             </div>
 
@@ -122,8 +124,12 @@
                   placeholder="telefono"
                   maxlength="10"
                 />
-                <mat-error *ngIf="formGroup.controls.celular.errors?.minlength">El número telefónico debe contener 10 digitos</mat-error>
-                <mat-error *ngIf="formGroup.controls.celular.errors?.maxlength">El número telefónico debe contener 10 digitos</mat-error>
+                <mat-error *ngIf="formGroup.controls.celular.errors?.minlength"
+                  >El número telefónico debe contener 10 digitos</mat-error
+                >
+                <mat-error *ngIf="formGroup.controls.celular.errors?.maxlength"
+                  >El número telefónico debe contener 10 digitos</mat-error
+                >
               </mat-form-field>
             </div>
 
@@ -140,6 +146,15 @@
         </form>
         <div class="row row-m-t">
           <div class="col-12 text-right">
+            <button
+              mat-stroked-button
+              color="secondary"
+              aria-label="Cancelar"
+              routerLink="/topografos"
+              class="mr-2"
+            >
+              Cancelar
+            </button>
             <button
               mat-stroked-button
               color="primary"
