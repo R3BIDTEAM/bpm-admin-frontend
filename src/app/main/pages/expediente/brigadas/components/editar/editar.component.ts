@@ -105,6 +105,7 @@ export class EditarComponent implements OnInit {
       (res: any) => {
         this.supervisores = res;
         this.loadingSupervisores = false;
+        console.log(res);
       },
       (error) => {
         this.loadingSupervisores = false;
@@ -149,7 +150,7 @@ export class EditarComponent implements OnInit {
       insertTime: {
         $date: hoy
       },
-      apellidoPaterno: supervisor.apellidopaterno,
+      apellidoPaterno: (supervisor.apellidopaterno) ? supervisor.apellidopaterno: supervisor.apellidoPaterno,
       otros: '',
       celular: supervisor.telefono || '',
       active: true,
@@ -157,7 +158,7 @@ export class EditarComponent implements OnInit {
       curp: supervisor.curp || '',
       rfc: supervisor.rfc,
       email: supervisor.correo,
-      apellidoMaterno: supervisor.apellidomaterno
+      apellidoMaterno: (supervisor.apellidomaterno) ? supervisor.apellidomaterno: supervisor.apellidoMaterno
     };
 
     return supervisorData;
@@ -175,7 +176,7 @@ export class EditarComponent implements OnInit {
     brigadaEnvio['cadenero1'] = this.formGroup.value.cadenero1;
     brigadaEnvio['cadenero2'] = this.formGroup.value.cadenero2;
 
-    console.log(brigadaEnvio['topografo']);
+    console.log(brigadaEnvio['supervisor']);
 
     this.loadingSave = true;
     this.http.post(uri, brigadaEnvio, this.options).subscribe(
